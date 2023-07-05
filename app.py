@@ -22,7 +22,7 @@ def register():
 
 @app.route("/update_server", methods=['POST'])
 def webhook():
-    if request.method == 'POST':
+    if requests.method == 'POST':
         repo = git.Repo('/home/ecoe52/flask_project')
         origin = repo.remotes.origin
         origin.pull()
