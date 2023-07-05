@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm
 from flask_behind_proxy import FlaskBehindProxy
 import git
+import request
 
 app = Flask(__name__)
 proxied = FlaskBehindProxy(app)
@@ -22,7 +23,7 @@ def register():
 
 @app.route("/update_server", methods=['POST'])
 def webhook():
-    if requests.method == 'POST':
+    if request.method == 'POST':
         repo = git.Repo('/home/ecoe52/flask_project')
         origin = repo.remotes.origin
         origin.pull()
